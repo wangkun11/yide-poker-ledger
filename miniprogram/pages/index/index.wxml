@@ -1,0 +1,75 @@
+<view wx:if="{{!logged}}" class="login">
+  <view class="brand">♠</view><view class="title">以德服人</view>
+  <view class="note">{{loadError || '正在读取本机账本…'}}</view>
+  <button wx:if="{{loadError}}" class="ui-button primary" loading="{{logging}}" bindtap="openLocal"><text class="button-label">重新读取</text></button>
+</view>
+<view wx:else class="app {{tab === 'current' ? 'compact' : tab === 'friends' ? 'friends-compact' : 'records-compact'}}">
+ <block wx:if="{{tab === 'current'}}">
+  <view class="table-hero">
+   <view class="qr-area" bindtap="previewQr"><image class="mini-code" src="/assets/miniprogram-code.jpg" mode="aspectFit"/><view class="qr-caption">扫码进入 · 点击放大</view></view>
+   <view class="table-controls"><view class="buy-label">每手码量 <text>（点击编辑）</text></view><input class="buy-input" type="digit" value="{{draft.buyIn}}" data-field="buyIn" bindblur="field"/><button class="ui-button primary join-button" bindtap="openPicker"><text class="button-label">＋ 好友上桌</text></button><view class="table-hint">点击昵称管理好友，填写剩余码量自动计算盈亏</view></view>
+  </view>
+  <view class="game-meta"><input value="{{draft.title}}" maxlength="40" data-field="title" bindblur="field"/><picker mode="date" value="{{draft.date}}" data-field="date" bindchange="field">{{draft.date}} ▾</picker></view>
+  <view class="game-room"><text>房费（元）</text><input type="digit" placeholder="无房费填 0" value="{{draft.roomFee}}" bindblur="roomFee"/><picker range="{{friends}}" range-key="name" bindchange="roomPayer"><text>{{draft.payerName}} ▾</text></picker></view>
+  <view class="ledger-grid table-labels"><text>昵称</text><text>手数</text><text>剩余码量</text><text>盈亏积分</text></view>
+  <view wx:if="{{!draft.players.length}}" class="empty table-empty">还没有好友上桌<view class="sub">先添加好友，再勾选开始记账</view></view>
+  <view wx:for="{{visiblePlayers}}" wx:key="id" class="ledger-grid ledger-row" style="height: {{rowHeight || 32}}px">
+   <text class="player-name" data-id="{{item.id}}" bindtap="playerMenu">{{item.name}}</text>
+   <view class="mini-stepper"><button class="ui-button" disabled="{{item.hands <= 1}}" data-id="{{item.id}}" data-delta="-1" bindtap="hands"><text class="button-label">−</text></button><text>{{item.hands}}</text><button class="ui-button" data-id="{{item.id}}" data-delta="1" bindtap="hands"><text class="button-label">＋</text></button></view>
+   <input class="remaining-input" type="digit" placeholder="待填写" value="{{item.remaining}}" data-id="{{item.id}}" bindblur="remaining"/>
+   <text class="profit {{item.tone}}">{{item.profit}}</text>
+  </view>
+  <view class="table-totals"><text>水上 <text class="up">{{totalUp}}</text></text><text>水下 <text class="down">{{totalDown}}</text></text><text class="{{balanced ? 'up' : ''}}">{{balance}}</text></view>
+  <view class="table-pager"><text>共 {{draft.players.length}} 人 · 买入 {{totalBuy}}</text><view wx:if="{{pageCount > 1}}"><text class="page-link" data-delta="-1" bindtap="turnPage">上一页</text><text>{{playerPage + 1}} / {{pageCount}}</text><text class="page-link" data-delta="1" bindtap="turnPage">下一页</text></view><text wx:else>每页最多 {{pageSize}} 人</text></view>
+  <view class="table-actions"><button class="ui-button" bindtap="newGame"><text class="button-label">新建牌局</text></button><button class="ui-button primary" bindtap="finish"><text class="button-label">结束并保存牌局</text></button></view>
+ </block>
+ <block wx:if="{{tab === 'friends'}}">
+  <view class="heading"><view><view class="title">我的好友</view><view class="sub">仅当前微信账号可见，共 {{friends.length}} 位</view></view></view>
+  <view class="card add"><input placeholder="输入好友昵称" maxlength="20" value="{{friendName}}" bindinput="friendInput"/><button class="ui-button ui-button-small primary" bindtap="addFriend"><text class="button-label">添加</text></button></view>
+  <view wx:if="{{!friends.length}}" class="card empty">从第一位好友开始</view>
+  <view class="friends-list">
+  <view class="card friend" wx:for="{{friends}}" wx:key="id"><text>{{item.name}}</text><view><text data-id="{{item.id}}" bindtap="rename">改名</text><text data-id="{{item.id}}" bindtap="deleteFriend">移除</text></view></view>
+  </view>
+  <view class="note">账本保存在当前微信账号的本机存储中，不跨设备同步。清理小程序数据、重装微信或换手机可能导致记录丢失。</view>
+ </block>
+ <block wx:if="{{tab === 'history'}}">
+  <view class="heading"><view><view class="title">历史记录</view><view class="sub">保存每次相聚的账目</view></view><button class="ui-button ui-button-small" bindtap="selectAll"><text class="button-label">全选 / 取消</text></button></view>
+  <checkbox-group class="history-list" bindchange="selectSessions"><view class="card history" wx:for="{{sessions}}" wx:key="id"><label><checkbox value="{{item.id}}" checked="{{item.checked}}" color="#17674e"/><view><view class="history-title">{{item.date}}</view><view class="sub">{{item.count}} 人 · 总筹码 {{item.totalChips}}</view></view></label><view class="history-actions"><text data-id="{{item.id}}" bindtap="showDetail">明细</text><text data-id="{{item.id}}" bindtap="editSession">修改</text><text data-id="{{item.id}}" bindtap="deleteSession">删除</text></view></view></checkbox-group>
+  <view wx:if="{{!sessions.length}}" class="card empty">还没有历史记录<view class="sub">完成当前牌局后保存到这里</view></view>
+  <button class="ui-button primary" data-tab="summary" bindtap="tab"><text class="button-label">汇总所选 {{selectedCount}} 局 →</text></button>
+ </block>
+ <block wx:if="{{tab === 'summary'}}">
+  <view class="heading"><view><view class="title">输赢汇总</view><view class="sub">已选 {{selectedCount}} 局 · {{summary.winners}} 位水上好友</view></view><button class="ui-button ui-button-small" data-tab="history" bindtap="tab"><text class="button-label">选择牌局</text></button></view>
+  <view class="card settlement-fees"><view class="section-head">聚会费用 <text class="sub">按盈利比例分摊</text></view><view class="fees"><view><text class="label">房费（元）</text><text class="carried-room">{{room}}（牌局带入）</text></view><view><text class="label">餐费（元）</text><input type="digit" placeholder="0.00" value="{{meal}}" data-field="meal" bindblur="fee"/></view></view><view class="meal-payer"><text>餐费垫付人</text><picker range="{{friends}}" range-key="name" bindchange="mealPayer"><text>{{mealPayerName}} ▾</text></picker></view><view wx:if="{{summary.missingMealPayer}}" class="warning">请选择餐费垫付人后查看最终结算。</view><view wx:if="{{summary.unallocated}}" class="warning">没有水上好友，费用尚未分摊，当前结果不可作为最终结算。</view></view>
+  <view wx:if="{{summary.rows.length}}" class="settlement-table">
+   <view class="settlement-grid settlement-head"><text>好友 / 局数</text><text>盈亏积分</text><text>房费/元</text><text>餐费/元</text><text>返还/元</text><text>结算/元</text></view>
+   <view class="settlement-grid settlement-row" wx:for="{{summary.rows}}" wx:key="id"><view class="settlement-person"><text>{{item.name}}</text><text class="games">{{item.games}}局</text></view><text>{{item.grossText}}</text><text>{{item.roomText}}</text><text>{{item.mealText}}</text><text>{{item.advanceText}}</text><text class="settlement-net {{item.tone}}">{{item.netText}}</text></view>
+  </view>
+  <view wx:if="{{!summary.rows.length}}" class="card empty">先到历史记录勾选牌局</view>
+  <view class="settlement-foot">共 {{summary.rows.length}} 人 · 费用合计 {{summary.total}} 元<view>10 积分＝1 元；结算＝积分盈亏÷10 − 分摊费用＋垫付返还</view><view>按所选牌局累计盈利积分的比例分摊；金额精确到分，尾差按余数分配。</view></view>
+ </block>
+ <view class="nav"><view data-tab="current" bindtap="tab" class="{{tab === 'current' ? 'active' : ''}}">♧<text>当前牌局</text></view><view data-tab="history" bindtap="tab" class="{{tab === 'history' ? 'active' : ''}}">▤<text>历史记录</text></view><view data-tab="summary" bindtap="tab" class="{{tab === 'summary' ? 'active' : ''}}">◷<text>输赢汇总</text></view><view data-tab="friends" bindtap="tab" class="{{tab === 'friends' ? 'active' : ''}}">♙<text>我的好友</text></view></view>
+</view>
+<view wx:if="{{logged && picker}}" class="overlay"><view class="sheet"><view class="title">好友上桌</view><scroll-view scroll-y class="pick-list"><checkbox-group class="friend-picker-grid" bindchange="pickChange"><label class="friend-picker-option" wx:for="{{picks}}" wx:key="id"><checkbox value="{{item.id}}" color="#17674e"/><text class="friend-picker-name">{{item.name}}</text></label></checkbox-group></scroll-view><button class="ui-button primary" bindtap="join"><text class="button-label">加入牌桌</text></button><button class="ui-button" bindtap="closePicker"><text class="button-label">取消</text></button></view></view>
+<view wx:if="{{logged && detail}}" class="overlay"><view class="sheet history-detail">
+ <view class="title">{{detail.date}}</view>
+ <view class="detail-meta">{{detail.players.length}} 位好友 · 总筹码 {{detail.totalChips}} · 每手 {{detail.buyIn}}</view>
+ <view class="detail-room">房费 {{detail.roomFeeText}} 元 · 垫付人 {{detail.payerName}}（不计入牌局盈亏）</view>
+ <view class="detail-grid detail-head"><text>好友</text><text>手数</text><text>剩余筹码</text><text>盈亏积分</text></view>
+ <scroll-view scroll-y class="detail-scroll" style="height:calc({{detail.players.length < 15 ? detail.players.length : 15}} * var(--detail-row-height))">
+  <view wx:for="{{detail.players}}" wx:key="id" class="detail-grid detail-compact-row"><text>{{item.name}}</text><text>{{item.hands}}</text><text>{{item.remaining}}</text><text class="{{item.tone}}">{{item.profit}}</text></view>
+ </scroll-view>
+ <button class="ui-button" bindtap="closeDetail"><text class="button-label">关闭</text></button>
+</view></view>
+
+<view wx:if="{{logged && edit}}" class="overlay"><view class="sheet history-edit">
+ <view class="title">修改历史牌局</view>
+ <view class="edit-meta"><picker mode="date" value="{{edit.date}}" data-field="date" bindchange="editField">{{edit.date}} ▾</picker><text>每手积分</text><input type="digit" value="{{edit.buyIn}}" data-field="buyIn" bindblur="editField"/></view>
+ <view class="edit-meta"><text>房费（元）</text><input type="digit" value="{{edit.roomFee}}" data-field="roomFee" bindblur="editField"/><picker range="{{edit.payerOptions}}" range-key="name" bindchange="editPayer">{{edit.payerName}} ▾</picker></view>
+ <view class="edit-grid detail-head"><text>好友</text><text>手数</text><text>剩余积分</text><text>盈亏积分</text></view>
+ <scroll-view scroll-y class="edit-scroll">
+  <view wx:for="{{edit.players}}" wx:key="id" class="edit-grid edit-row"><input value="{{item.name}}" maxlength="20" data-id="{{item.id}}" data-field="name" bindblur="editField"/><input type="number" value="{{item.hands}}" data-id="{{item.id}}" data-field="hands" bindblur="editField"/><input type="digit" value="{{item.remaining}}" data-id="{{item.id}}" data-field="remaining" bindblur="editField"/><text>{{item.profit}}</text></view>
+ </scroll-view>
+ <view class="detail-meta">{{edit.players.length}} 人 · 积分差额 {{edit.balance}} · 平账后可保存</view>
+ <view class="table-actions"><button class="ui-button" bindtap="cancelEdit"><text class="button-label">取消</text></button><button class="ui-button primary" bindtap="saveEdit"><text class="button-label">保存修改</text></button></view>
+</view></view>

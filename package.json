@@ -1,0 +1,9 @@
+{
+  "name": "tongzhuo-wechat",
+  "private": true,
+  "type": "commonjs",
+  "scripts": {
+    "test": "node --test tests/*.test.js",
+    "check": "node scripts/check.js"
+  }
+}

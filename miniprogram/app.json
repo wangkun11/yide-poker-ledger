@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pages/index/index"
+  ],
+  "window": {
+    "navigationBarTitleText": "以德服人",
+    "navigationBarBackgroundColor": "#17674e",
+    "navigationBarTextStyle": "white",
+    "backgroundColor": "#f5f8f5"
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json",
+  "lazyCodeLoading": "requiredComponents"
+}

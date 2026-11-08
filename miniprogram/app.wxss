@@ -1,0 +1,148 @@
+page{background:#f5f8f5;color:#294738;font-family:-apple-system,sans-serif;font-size:28rpx}view,text,input,button{box-sizing:border-box}button{background:white;color:#17674e;font-size:27rpx;border-radius:14rpx;margin:0;width:100%;height:80rpx;min-height:0;padding:0 24rpx;display:flex;align-items:center;justify-content:center;line-height:1.2;font-weight:500;text-align:center}button:not([size=mini]){width:100%;margin:0;padding:0 24rpx}button::after{border:1rpx solid #dfe8df}button.primary{background:#17674e;color:white}button.primary::after{border:0}button[size=mini]{font-size:23rpx;width:auto;flex-shrink:0;height:64rpx;padding:0 22rpx;line-height:1.2}input{background:#f7faf7;border:1rpx solid #dce8df;border-radius:12rpx;padding:14rpx 18rpx;height:78rpx;font-size:28rpx;min-width:0}.app{padding:26rpx 28rpx 190rpx}.account,.toolbar,.heading,.row,.section-head,.hero-bottom,.friend,.detail-row{display:flex;justify-content:space-between;align-items:center;gap:14rpx}.account{font-size:23rpx}.sync{font-size:20rpx;color:#6f8a79;max-width:360rpx;text-align:right}.toolbar{justify-content:flex-end;font-size:21rpx;color:#7c9483;padding:20rpx 0 30rpx;gap:28rpx}.heading{margin:14rpx 0 30rpx}.title{font-size:43rpx;font-weight:600}.sub{font-size:23rpx;color:#869a8d;line-height:1.8;font-weight:400}.hero{background:#1c614a;border-radius:23rpx;color:white;padding:32rpx;margin-bottom:24rpx}.eyebrow{font-size:17rpx;letter-spacing:3rpx;color:#bdd6c6}.game-title{font-size:38rpx;color:white;background:transparent;border:0;border-bottom:1rpx solid #ffffff30;border-radius:0;padding:12rpx 0;margin:16rpx 0 25rpx}.hero-bottom{font-size:24rpx}.hero-bottom input{width:170rpx;color:white;background:#ffffff15;border-color:#ffffff30;margin-top:10rpx}.stats{display:flex;gap:20rpx}.stats .card{flex:1}.stats text{font-size:23rpx;color:#819588}.number{font-size:40rpx;font-weight:600;line-height:1.8}.number text{font-size:22rpx;font-weight:400}.card{background:white;border:1rpx solid #e4ece5;border-radius:20rpx;padding:28rpx;margin-bottom:24rpx}.section-head{font-weight:500;margin-bottom:24rpx}.empty{text-align:center;padding:65rpx 20rpx;color:#7d9585;line-height:2}.note{font-size:22rpx;color:#84978a;line-height:1.9;margin:22rpx 0}.player{border-top:1rpx solid #edf1ed;padding:24rpx 0}.avatar{display:inline-block;width:53rpx;height:53rpx;background:#e9f2eb;color:#517d60;border-radius:14rpx;text-align:center;line-height:53rpx;margin-right:12rpx}.person{display:flex;align-items:center;flex:1}.up{color:#17674e}.down{color:#c8705a}.remove{color:#9fb0a3;font-size:34rpx;padding:0 8rpx}.player-inputs,.fees{display:flex;gap:28rpx;margin-top:20rpx}.player-inputs>view,.fees>view{flex:1;min-width:0}.label{display:block;font-size:21rpx;color:#889e8f;margin-bottom:13rpx}.stepper{display:flex;align-items:center;justify-content:space-between;gap:10rpx;height:78rpx}.stepper button{background:#f3f7f2;line-height:1.2;padding:0 18rpx}.balance{border-top:1rpx solid #e8eee7;padding-top:22rpx;text-align:center;font-size:24rpx}.friend{font-weight:500}.friend view{display:flex;gap:27rpx;font-size:23rpx;color:#879b8c;font-weight:400}.add{display:flex;align-items:center;gap:20rpx}.add input{flex:1}.history label{display:flex;align-items:center;gap:15rpx}.history-actions{display:flex;justify-content:flex-end;gap:30rpx;color:#7d9385;font-size:23rpx;margin-top:20rpx}.result-detail{font-size:22rpx;color:#819486;margin-top:12rpx;line-height:1.8}.nav{position:fixed;bottom:0;left:0;right:0;background:#ffffff;border-top:1rpx solid #e2eae2;display:flex;justify-content:space-around;padding:15rpx 10rpx calc(15rpx + env(safe-area-inset-bottom));z-index:3}.nav>view{text-align:center;flex:1;color:#8d9e91;font-size:35rpx;border-radius:15rpx;padding:7rpx}.nav text{display:block;font-size:21rpx;margin-top:3rpx}.nav .active{color:#17674e;background:#edf5ee}.overlay{position:fixed;inset:0;background:#153b2b80;z-index:9;display:flex;align-items:center;justify-content:center;padding:30rpx}.sheet{background:white;border-radius:25rpx;padding:35rpx;width:100%;max-height:90vh}.pick-list{max-height:50vh;margin:26rpx 0}.pick-list label{display:flex;align-items:center;padding:22rpx 12rpx;gap:16rpx;border-bottom:1rpx solid #edf1ed}.sheet button{margin-top:18rpx}.detail-row{padding:20rpx 0;border-bottom:1rpx solid #edf1ed}.login{padding:100rpx 55rpx;text-align:center}.brand{width:115rpx;height:115rpx;line-height:115rpx;border-radius:30rpx;background:#17674e;color:white;font-size:85rpx;margin:0 auto 30rpx}.login .title{font-size:56rpx;letter-spacing:8rpx}.intro{margin:55rpx 0 35rpx;text-align:left;line-height:2.5;padding:35rpx 45rpx;color:#678470}.warning{padding:20rpx;background:#fff3e8;color:#b16e3d;border-radius:12rpx;font-size:23rpx;line-height:1.7}
+
+/* 紧凑牌桌：一页最多 15 人，保留其他页的卡片布局。 */
+.compact{padding:8px 16px calc(64px + env(safe-area-inset-bottom))}.compact .account{font-size:11px;height:18px}.compact .toolbar{font-size:10px;padding:2px 0 4px;gap:18px;height:20px}.table-hero{display:flex;gap:20px;align-items:center;height:130px}.qr-area{width:116px;flex-shrink:0;text-align:center}.mini-code,.qr-placeholder{width:100px;height:100px;margin:auto}.qr-placeholder{border:1px dashed #aac4b3;border-radius:12px;background:#edf5ee;display:flex;flex-direction:column;justify-content:center;color:#17674e;font-size:38px}.qr-placeholder text{font-size:11px}.qr-caption{font-size:9px;color:#839789;line-height:13px;margin-top:3px}.table-controls{flex:1;min-width:0}.buy-label{text-align:center;color:#17674e;font-size:12px}.buy-label text{color:#94a398;font-size:10px}.buy-input{height:32px;margin:7px 0;border:1px solid #76a38c;border-radius:24px;text-align:center;padding:0 6px;color:#17674e;font-size:17px;background:transparent}button.join-button{width:100%;height:32px;padding:0 12px;line-height:1.2;border-radius:24px;font-size:14px}.table-hint{color:#8d9e91;font-size:10px;line-height:14px;margin-top:5px}.game-meta{height:26px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:#839789;font-size:10px}.game-meta input{height:25px;background:transparent;border:0;padding:0;font-size:12px;flex:1;color:#526e5d}.ledger-grid{display:grid;grid-template-columns:minmax(0,1fr) 100px minmax(0,1fr) minmax(0,1fr);align-items:center;column-gap:6px}.table-labels{height:25px;text-align:center;color:#8a9c8e;font-size:11px}.table-labels>text:first-child{text-align:left}.table-labels>text:last-child{text-align:right}.ledger-row{min-height:25px;font-size:13px;border-bottom:1px solid #eaf0eb}.player-name{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;color:#367d5c;line-height:25px}.mini-stepper{display:flex;align-items:center;justify-content:space-between;gap:1px}.mini-stepper button{padding:0;width:25px;height:25px;min-width:25px;flex-shrink:0;line-height:1;border-radius:50%;background:transparent;color:#297550;font-size:20px}.mini-stepper button::after{border:1px solid #79a38a;border-radius:50%}.mini-stepper button:last-child{background:#247451;color:white}.mini-stepper button[disabled]{opacity:.35}.mini-stepper text{font-size:12px;text-align:center;min-width:28px}.remaining-input{width:100%;height:25px;padding:0;border:0;background:transparent;text-align:center;font-size:13px;color:#367d5c}.profit{text-align:right;font-size:12px;overflow:hidden;text-overflow:ellipsis}.compact .up{color:#d34e45}.compact .down{color:#23784e}.table-totals{display:flex;justify-content:space-between;align-items:center;gap:5px;min-height:25px;font-size:10px;color:#8a9c8e}.table-totals>text:last-child{text-align:right}.table-pager{display:flex;align-items:center;justify-content:space-between;height:22px;font-size:10px;color:#8a9c8e}.table-pager>view{display:flex;gap:9px;align-items:center}.page-link{color:#247451;padding:4px 0}.table-actions{display:flex;gap:12px;margin-top:4px}.table-actions button{flex:1;width:0;min-width:0;height:32px;padding:0 8px;line-height:1.2;font-size:12px;border-radius:9px}.compact .nav{padding:4px 5px calc(4px + env(safe-area-inset-bottom))}.compact .nav>view{font-size:19px;padding:2px}.compact .nav text{font-size:10px;margin:0}.table-empty{padding:28px 0}.compact .sync{font-size:10px}
+@media(max-width:350px){.compact{padding-left:10px;padding-right:10px}.ledger-grid{grid-template-columns:minmax(0,1fr) 88px minmax(0,1fr) minmax(0,1fr);column-gap:3px}.table-hero{gap:10px}.qr-area{width:104px}.ledger-row,.remaining-input{font-size:12px}.profit{font-size:11px}}
+
+/* 顶栏保持单行；显式覆盖微信 mini 按钮的默认 inline-block 和内边距。 */
+.account,.compact .account{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:8px;height:30px;font-size:11px;margin-bottom:12px}
+.account-brand{white-space:nowrap}
+.account .sync,.compact .account .sync{min-width:0;max-width:none;text-align:center;font-size:10px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;line-height:24px}
+.account .toolbar,.compact .account .toolbar{display:flex;align-items:center;justify-content:flex-end;gap:12px;height:30px;padding:0;font-size:11px;white-space:nowrap}
+.account .toolbar text{line-height:30px}
+.compact .account{margin-bottom:0}
+button[size="mini"]{display:flex;align-items:center;justify-content:center;width:auto;min-width:0;height:32px;min-height:0;margin:0;padding:0 12px;line-height:1.2;box-sizing:border-box;white-space:nowrap;flex-shrink:0}
+.heading>view{min-width:0;flex:1}
+.heading>button[size="mini"]{height:32px;padding:0 12px;align-self:center}
+@media(max-width:350px){.account,.compact .account{gap:5px;font-size:10px}.account .toolbar,.compact .account .toolbar{gap:8px;font-size:10px}.account .sync,.compact .account .sync{font-size:9px}}
+
+/* 按钮不依赖 size=mini 的系统样式；文字作为独立 flex 子项居中。 */
+button.ui-button{display:flex;align-items:center;justify-content:center;box-sizing:border-box;width:100%;height:44px;min-height:0;min-width:0;margin:0;padding:0 14px;line-height:normal;font-size:14px;font-weight:500;border-radius:8px;flex-shrink:0}
+button.ui-button .button-label{display:block;flex:0 1 auto;min-width:0;line-height:1.3;text-align:center;word-break:break-word}
+button.ui-button-small{display:flex;width:auto;height:36px;padding:0 12px;font-size:12px;white-space:nowrap}
+button.ui-button-small .button-label{white-space:nowrap}
+button.ui-button.join-button{width:100%;height:32px;padding:0 10px;border-radius:24px}
+.table-actions button.ui-button{flex:1 1 0%;width:0;height:32px;padding:0 8px;font-size:12px}
+.mini-stepper button.ui-button{width:25px;min-width:25px;height:25px;padding:0;border-radius:50%;font-size:20px}
+.mini-stepper button.ui-button .button-label{line-height:1}
+.sheet button.ui-button{margin-top:10px}
+/* 固定输入与相邻按钮高度，避免 rpx 随屏宽放大而与 px 按钮错位。 */
+.add{gap:12px}.add input{flex:1 1 0%;width:0;min-width:0;height:40px;padding:0 10px;font-size:15px}
+.add button.ui-button{height:40px;min-width:60px;font-size:14px}
+.fees input{height:40px;padding:0 10px;font-size:15px;width:100%}
+.friend>text{flex:1;min-width:0;overflow-wrap:break-word;word-break:break-all}
+.friend>view{flex-shrink:0;white-space:nowrap}
+.history label>view,.detail-row>view{min-width:0;overflow-wrap:break-word;word-break:break-all}
+.history checkbox,.detail-row>text{flex-shrink:0}
+.result .row{flex-wrap:wrap;align-items:baseline}.result .row>text:first-child{min-width:0;overflow-wrap:break-word;word-break:break-all}
+.result .number{margin-left:auto;max-width:100%;overflow-wrap:anywhere;font-size:22px}
+.result-detail{overflow-wrap:break-word;word-break:break-all}
+.app:not(.compact){padding-bottom:calc(100px + env(safe-area-inset-bottom))}
+.nav>view{min-width:0}.nav text{white-space:nowrap}
+.overlay{padding:16px;padding-bottom:calc(16px + env(safe-area-inset-bottom))}
+.sheet{display:flex;flex-direction:column;max-height:85vh;padding:20px;min-height:0}
+.pick-list{height:40vh;max-height:40vh;min-height:0;flex-shrink:1;margin:16px 0 6px}
+.pick-list label{word-break:break-all}.pick-list checkbox{flex-shrink:0}
+.account,.compact .account{display:flex}.account-brand{flex-shrink:0}.account .sync,.compact .account .sync{flex:1}.account .toolbar{flex-shrink:0}
+@media(max-width:350px){.app{padding-left:12px;padding-right:12px}.card{padding:20rpx}.heading .title{font-size:36rpx}.heading{gap:8px}.friend>view{gap:14px}.fees{gap:12px}.add{gap:8px}.add button.ui-button{min-width:52px;padding:0 10px}.table-totals,.table-pager{flex-wrap:wrap;height:auto;min-height:25px;row-gap:4px}}
+@media(max-height:600px){.sheet{max-height:90vh;padding:16px}.pick-list{height:32vh;max-height:32vh}.login{padding-top:35px}}
+
+/* 左右使用等宽区域，状态中心固定在整行的 50%，不受操作区宽度影响。 */
+.account,.compact .account{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr)}
+.account .account-brand{justify-self:start;min-width:0}
+.account .sync,.compact .account .sync{justify-self:center;max-width:120px;flex:none}
+.account .toolbar,.compact .account .toolbar{justify-self:end;min-width:0}
+@media(max-width:350px){.account .sync,.compact .account .sync{max-width:100px}}
+
+/* 好友页采用连续列表，常见竖屏为 15 行预留空间。 */
+.friends-compact{padding-top:10px}
+.friends-compact .heading{margin:0 0 10px}
+.friends-compact .heading .title{font-size:22px;line-height:28px}
+.friends-compact .heading .sub{font-size:11px;line-height:18px}
+.friends-compact .add{padding:8px;margin-bottom:10px;border-radius:10px}
+.friends-compact .add input,.friends-compact .add button.ui-button{height:34px;font-size:13px}
+.friends-list{background:#fff;border:1px solid #e4ece5;border-radius:10px;overflow:hidden}
+.friends-list:empty{display:none}
+.friends-compact .card.friend{height:clamp(28px,calc((100vh - 235px - env(safe-area-inset-bottom)) / 15),38px);min-height:28px;padding:0 12px;margin:0;border:0;border-bottom:1px solid #edf1ed;border-radius:0;gap:12px;font-size:13px;line-height:1.3}
+.friends-compact .card.friend:last-child{border-bottom:0}
+.friends-compact .friend>text{overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.friends-compact .friend>view{align-items:center;gap:4px;height:100%;font-size:11px}
+.friends-compact .friend>view>text{display:flex;align-items:center;justify-content:center;height:100%;min-width:36px;padding:0 6px}
+.friends-compact .note{font-size:11px;line-height:1.6;margin:10px 0}
+.friends-compact .nav{padding:4px 5px calc(4px + env(safe-area-inset-bottom))}
+.friends-compact .nav>view{font-size:19px;padding:2px}
+.friends-compact .nav text{font-size:10px;margin:0}
+
+/* 好友上桌：三列勾选，长昵称换行，整块 label 可点击。 */
+.friend-picker-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;padding:2px}
+.pick-list .friend-picker-option{display:flex;align-items:center;min-width:0;min-height:48px;margin:0;padding:8px 5px;gap:4px;border:1px solid #e4ece5;border-radius:8px;background:#f7faf7;font-size:12px;line-height:1.4}
+.friend-picker-option checkbox{flex:none;transform:scale(.8);transform-origin:center;width:24px}
+.friend-picker-name{flex:1;min-width:0;word-break:break-all}
+@media(max-width:350px){.friend-picker-grid{gap:5px}.pick-list .friend-picker-option{padding:7px 3px;gap:2px;font-size:11px}}
+
+/* 历史与结算使用连续行，按可用屏高为 15 行分配空间。 */
+.records-compact{padding:10px 12px calc(70px + env(safe-area-inset-bottom))}
+.records-compact .heading{margin:0 0 10px;gap:8px}
+.records-compact .heading .title{font-size:22px;line-height:28px}
+.records-compact .heading .sub{font-size:11px;line-height:18px}
+.records-compact .nav{padding:4px 5px calc(4px + env(safe-area-inset-bottom))}
+.records-compact .nav>view{font-size:19px;padding:2px}
+.records-compact .nav text{font-size:10px;margin:0}
+.history-list{display:block;background:white;border:1px solid #e4ece5;border-radius:10px;overflow:hidden;margin-bottom:10px}
+.history-list:empty{display:none}
+.records-compact .history{display:flex;align-items:center;justify-content:space-between;gap:8px;min-height:32px;height:clamp(32px,calc((100vh - 180px - env(safe-area-inset-bottom)) / 15),40px);margin:0;padding:2px 8px;border:0;border-bottom:1px solid #edf1ed;border-radius:0}
+.records-compact .history:last-child{border-bottom:0}
+.records-compact .history label{flex:1;min-width:0;gap:4px;height:100%}
+.records-compact .history label>view{flex:1;min-width:0}
+.records-compact .history checkbox{transform:scale(.75);width:25px;flex-shrink:0}
+.history-title{font-size:12px;line-height:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.records-compact .history .sub{font-size:9px;line-height:12px}
+.records-compact .history-actions{flex-shrink:0;gap:12px;margin:0;font-size:11px;align-items:center;height:100%}
+.records-compact .history-actions text{display:flex;align-items:center;height:100%;padding:0 3px}
+.records-compact>button.ui-button{height:34px;font-size:13px}
+.records-compact .settlement-fees{padding:8px 10px;margin-bottom:8px;border-radius:10px}
+.settlement-fees .section-head{margin-bottom:6px;font-size:12px;line-height:16px}
+.settlement-fees .section-head .sub{font-size:10px}
+.settlement-fees .fees{margin:0;gap:12px}
+.settlement-fees .fees>view{display:flex;align-items:center;gap:6px}
+.settlement-fees .label{margin:0;white-space:nowrap;font-size:11px}
+.settlement-fees .fees input{flex:1;min-width:0;width:0;height:28px;font-size:13px;padding:0 7px}
+.settlement-fees .warning{padding:4px 0;background:transparent;font-size:10px;line-height:14px}
+.settlement-table{border:1px solid #e4ece5;border-radius:10px;background:white;overflow:hidden}
+.settlement-grid{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1.15fr) minmax(0,.8fr) minmax(0,.8fr) minmax(0,1.2fr);gap:4px;align-items:center;padding:0 8px;font-size:11px;font-variant-numeric:tabular-nums}
+.settlement-grid>text{text-align:right;word-break:break-all;line-height:1.3}
+.settlement-head{height:26px;background:#edf5ee;color:#6f8577;font-size:10px}
+.settlement-head>text:first-child{text-align:left}
+.settlement-row{min-height:26px;min-height:clamp(26px,calc((100vh - 304px - env(safe-area-inset-bottom)) / 15),36px);border-top:1px solid #edf1ed;padding-top:2px;padding-bottom:2px}
+.settlement-person{min-width:0;display:flex;flex-wrap:wrap;align-items:center;column-gap:4px;line-height:1.3;word-break:break-all}
+.settlement-person .games{color:#8a9c8e;font-size:9px;white-space:nowrap}
+.settlement-net{font-weight:600}
+.settlement-foot{font-size:10px;color:#819486;line-height:15px;margin-top:6px}
+@media(max-width:350px){.settlement-grid{font-size:10px;gap:3px;padding-left:6px;padding-right:6px}.settlement-head{font-size:9px}.records-compact .history-actions{gap:6px}}
+
+/* 历史详情以日期为标题，最多 15 行同屏，更多记录在表内滚动。 */
+.history-detail{--detail-row-height:clamp(24px,calc((85vh - 150px) / 15),36px);padding:16px;max-height:85vh}
+.history-detail .title{font-size:22px;line-height:28px;flex-shrink:0}
+.detail-meta{font-size:11px;line-height:18px;color:#819486;margin:4px 0 8px;flex-shrink:0}
+.detail-grid{display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.55fr) minmax(0,1.1fr) minmax(0,1.15fr);gap:6px;align-items:center;font-size:12px;line-height:1.3}
+.detail-grid>text{min-width:0;word-break:break-all;text-align:right}
+.detail-grid>text:first-child{text-align:left}
+.detail-grid>text:nth-child(2){text-align:center}
+.detail-head{height:26px;flex-shrink:0;background:#edf5ee;color:#819486;font-size:11px;padding:0 6px;border-radius:6px 6px 0 0}
+.history-detail .detail-scroll{min-height:0;flex-shrink:1;border-bottom:1px solid #e4ece5}
+.detail-compact-row{min-height:var(--detail-row-height);padding:3px 6px;border-top:1px solid #edf1ed}
+.history-detail button.ui-button{height:34px;flex-shrink:0;margin-top:10px}
+@media(max-width:350px){.history-detail{padding:12px}.detail-grid{font-size:11px;gap:4px}.detail-meta{font-size:10px}}
+
+.game-room{display:flex;align-items:center;gap:8px;height:34px;font-size:11px;color:#678470}
+.game-room input{width:95px;height:28px;padding:0 6px;font-size:12px}
+.game-room picker{flex:1;min-width:0;text-align:right}.game-room picker text{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.carried-room{font-size:11px;line-height:28px;word-break:break-all}
+.settlement-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,.7fr) minmax(0,.7fr) minmax(0,.9fr) minmax(0,1.15fr);font-size:10px;gap:3px;padding-left:6px;padding-right:6px}
+.settlement-head{font-size:9px}
+.detail-room{font-size:10px;color:#819486;line-height:16px;margin-bottom:6px;flex-shrink:0}
+.history-detail{--detail-row-height:clamp(24px,calc((85vh - 176px) / 15),36px)}
+
+.meal-payer{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;line-height:24px;color:#678470}.meal-payer picker{flex:1;min-width:0;text-align:right}.meal-payer picker text{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+
+.history-edit{max-height:88vh;padding:16px;display:flex;flex-direction:column;box-sizing:border-box}.history-edit .title{font-size:20px;margin-bottom:8px}.edit-meta{display:flex;align-items:center;gap:8px;font-size:11px;min-height:34px;flex-shrink:0}.edit-meta picker{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.edit-meta input{width:80px;height:28px;padding:0 5px;font-size:12px}.edit-grid{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr) minmax(0,1fr);gap:5px;align-items:center;font-size:11px}.edit-grid>text{text-align:right}.edit-grid>text:first-child{text-align:left}.edit-row{height:30px;border-bottom:1px solid #edf1ed}.edit-row input{width:100%;min-width:0;box-sizing:border-box;height:26px;padding:0 4px;font-size:11px}.edit-scroll{height:450px;max-height:calc(88vh - 205px);min-height:0}.history-edit .table-actions{flex-shrink:0}.history-edit .detail-meta{margin:6px 0}
