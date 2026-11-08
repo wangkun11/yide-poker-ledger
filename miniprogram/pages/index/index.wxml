@@ -42,11 +42,11 @@
   <view class="heading"><view><view class="title">输赢汇总</view><view class="sub">已选 {{selectedCount}} 局 · {{summary.winners}} 位水上好友</view></view><button class="ui-button ui-button-small" data-tab="history" bindtap="tab"><text class="button-label">选择牌局</text></button></view>
   <view class="card settlement-fees"><view class="section-head">聚会费用 <text class="sub">按盈利比例分摊</text></view><view class="fees"><view><text class="label">房费（元）</text><text class="carried-room">{{room}}（牌局带入）</text></view><view><text class="label">餐费（元）</text><input type="digit" placeholder="0.00" value="{{meal}}" data-field="meal" bindblur="fee"/></view></view><view class="meal-payer"><text>餐费垫付人</text><picker range="{{friends}}" range-key="name" bindchange="mealPayer"><text>{{mealPayerName}} ▾</text></picker></view><view wx:if="{{summary.missingMealPayer}}" class="warning">请选择餐费垫付人后查看最终结算。</view><view wx:if="{{summary.unallocated}}" class="warning">没有水上好友，费用尚未分摊，当前结果不可作为最终结算。</view></view>
   <view wx:if="{{summary.rows.length}}" class="settlement-table">
-   <view class="settlement-grid settlement-head"><text>好友 / 局数</text><text>盈亏积分</text><text>房费/元</text><text>餐费/元</text><text>返还/元</text><text>结算/元</text></view>
-   <view class="settlement-grid settlement-row" wx:for="{{summary.rows}}" wx:key="id"><view class="settlement-person"><text>{{item.name}}</text><text class="games">{{item.games}}局</text></view><text>{{item.grossText}}</text><text>{{item.roomText}}</text><text>{{item.mealText}}</text><text>{{item.advanceText}}</text><text class="settlement-net {{item.tone}}">{{item.netText}}</text></view>
+   <view class="settlement-grid settlement-head"><text>好友 / 明细</text><text>盈亏积分</text><text>房餐费/元</text><text>返还/元</text><text>结算/元</text></view>
+   <view class="settlement-grid settlement-row" data-id="{{item.id}}" bindtap="showPerson" wx:for="{{summary.rows}}" wx:key="id"><view class="settlement-person"><text>{{item.name}}</text><text class="games">{{item.games}}局 ›</text></view><text>{{item.grossText}}</text><text>{{item.feesText}}</text><text>{{item.advanceText}}</text><text class="settlement-net {{item.tone}}">{{item.netText}}</text></view>
   </view>
   <view wx:if="{{!summary.rows.length}}" class="card empty">先到历史记录勾选牌局</view>
-  <view class="settlement-foot">共 {{summary.rows.length}} 人 · 费用合计 {{summary.total}} 元<view>10 积分＝1 元；结算＝积分盈亏÷10 − 分摊费用＋垫付返还</view><view>按所选牌局累计盈利积分的比例分摊；金额精确到分，尾差按余数分配。</view></view>
+  <view class="settlement-foot"><view class="water-stats">总水上 {{summary.waterText}} 元 · 扣费 {{summary.deductedText}} 元 · 占比 {{summary.feePercent}}</view><view>10 积分＝1 元；结算＝积分盈亏÷10 − 分摊费用＋垫付返还</view><view>按所选牌局累计盈利积分的比例分摊；金额精确到分，尾差按余数分配。</view></view>
  </block>
  <view class="nav"><view data-tab="current" bindtap="tab" class="{{tab === 'current' ? 'active' : ''}}">♧<text>当前牌局</text></view><view data-tab="history" bindtap="tab" class="{{tab === 'history' ? 'active' : ''}}">▤<text>历史记录</text></view><view data-tab="summary" bindtap="tab" class="{{tab === 'summary' ? 'active' : ''}}">◷<text>输赢汇总</text></view><view data-tab="friends" bindtap="tab" class="{{tab === 'friends' ? 'active' : ''}}">♙<text>我的好友</text></view></view>
 </view>
@@ -72,4 +72,11 @@
  </scroll-view>
  <view class="detail-meta">{{edit.players.length}} 人 · 积分差额 {{edit.balance}} · 平账后可保存</view>
  <view class="table-actions"><button class="ui-button" bindtap="cancelEdit"><text class="button-label">取消</text></button><button class="ui-button primary" bindtap="saveEdit"><text class="button-label">保存修改</text></button></view>
+</view></view>
+
+<view wx:if="{{personDetail}}" class="overlay"><view class="sheet history-detail">
+ <view class="title">{{personDetail.name}} · 牌局盈亏</view><view class="detail-meta">本次汇总参与 {{personDetail.records.length}} 局 · 累计 {{personDetail.gross}} 积分</view>
+ <block wx:if="{{personDetail.records.length}}"><view class="person-line detail-head"><text>日期</text><text>牌局</text><text>盈亏积分</text></view>
+ <scroll-view scroll-y class="detail-scroll" style="height:calc({{personDetail.records.length < 15 ? personDetail.records.length : 15}} * var(--detail-row-height))"><view class="person-line detail-compact-row" wx:for="{{personDetail.records}}" wx:key="id"><text>{{item.date}}</text><text>{{item.title}}</text><text class="{{item.tone}}">{{item.profit}}</text></view></scroll-view></block>
+ <view wx:else class="note">本次仅垫付费用，没有参局记录。</view><button class="ui-button" bindtap="closePerson"><text class="button-label">关闭</text></button>
 </view></view>

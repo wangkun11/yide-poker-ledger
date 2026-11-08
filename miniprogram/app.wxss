@@ -138,7 +138,7 @@ button.ui-button.join-button{width:100%;height:32px;padding:0 10px;border-radius
 .game-room input{width:95px;height:28px;padding:0 6px;font-size:12px}
 .game-room picker{flex:1;min-width:0;text-align:right}.game-room picker text{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .carried-room{font-size:11px;line-height:28px;word-break:break-all}
-.settlement-grid{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr) minmax(0,.7fr) minmax(0,.7fr) minmax(0,.9fr) minmax(0,1.15fr);font-size:10px;gap:3px;padding-left:6px;padding-right:6px}
+.settlement-grid{grid-template-columns:minmax(0,1.25fr) minmax(0,1fr) minmax(0,1fr) minmax(0,.9fr) minmax(0,1.15fr);font-size:10px;gap:3px;padding-left:6px;padding-right:6px}
 .settlement-head{font-size:9px}
 .detail-room{font-size:10px;color:#819486;line-height:16px;margin-bottom:6px;flex-shrink:0}
 .history-detail{--detail-row-height:clamp(24px,calc((85vh - 176px) / 15),36px)}
@@ -146,3 +146,5 @@ button.ui-button.join-button{width:100%;height:32px;padding:0 10px;border-radius
 .meal-payer{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:11px;line-height:24px;color:#678470}.meal-payer picker{flex:1;min-width:0;text-align:right}.meal-payer picker text{display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 
 .history-edit{max-height:88vh;padding:16px;display:flex;flex-direction:column;box-sizing:border-box}.history-edit .title{font-size:20px;margin-bottom:8px}.edit-meta{display:flex;align-items:center;gap:8px;font-size:11px;min-height:34px;flex-shrink:0}.edit-meta picker{flex:1;min-width:0;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}.edit-meta input{width:80px;height:28px;padding:0 5px;font-size:12px}.edit-grid{display:grid;grid-template-columns:minmax(0,1fr) 44px minmax(0,1fr) minmax(0,1fr);gap:5px;align-items:center;font-size:11px}.edit-grid>text{text-align:right}.edit-grid>text:first-child{text-align:left}.edit-row{height:30px;border-bottom:1px solid #edf1ed}.edit-row input{width:100%;min-width:0;box-sizing:border-box;height:26px;padding:0 4px;font-size:11px}.edit-scroll{height:450px;max-height:calc(88vh - 205px);min-height:0}.history-edit .table-actions{flex-shrink:0}.history-edit .detail-meta{margin:6px 0}
+
+.water-stats{font-size:12px;font-weight:600;color:#17674e}.person-line{display:grid;grid-template-columns:90px minmax(0,1fr) minmax(64px,1fr);gap:6px;align-items:center;font-size:12px}.person-line text{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.person-line text:last-child{text-align:right}
